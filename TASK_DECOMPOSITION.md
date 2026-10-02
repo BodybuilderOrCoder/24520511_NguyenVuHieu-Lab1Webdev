@@ -41,3 +41,32 @@ Lab 1 - Modern Web Development & AI-Assisted Engineering
 - Check responsive behavior.
 - Check console errors.
 - Check for XSS risks and unsafe innerHTML usage.
+
+
+## T-01 Semantic HTML Contract
+
+### Landmark hierarchy
+
+The page must contain:
+
+- Header
+- Navigation
+- Main
+- Section
+- Footer
+
+### Accessibility requirements
+
+- Include a skip link pointing to #main.
+- Use exactly one h1.
+- Do not skip heading levels.
+- Use semantic elements instead of unnecessary div elements.
+- All form inputs must have visible labels.
+
+### Acceptance Criteria
+
+- Semantic landmark structure is present.
+- Skip link works.
+- Exactly one h1 exists.
+- No unnecessary div elements are used.
+- Chrome DevTools Accessibility panel shows the expected landmark tree.
