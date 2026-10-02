@@ -70,3 +70,21 @@ The page must contain:
 - Exactly one h1 exists.
 - No unnecessary div elements are used.
 - Chrome DevTools Accessibility panel shows the expected landmark tree.
+
+## Exercise 3 - Resilient Component
+
+### State Machine
+
+- Loading: show loading skeleton while data is being fetched.
+- Live Data: show the fetched data when the request succeeds.
+- Empty: show an empty state when the request succeeds but returns no data.
+- Error: show an error message and Retry button when the request fails.
+- Retry: allow the user to retry the failed request.
+
+### Acceptance Criteria
+
+- The component has explicit loading, live, empty, and error states.
+- The Retry button triggers the data request again.
+- The UI must not remain stuck in the loading state.
+- No unescaped innerHTML is used.
+- No console errors.
