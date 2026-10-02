@@ -50,7 +50,29 @@ function renderProjects() {
     });
 }
 
-renderError();
+function retryProjects() {
+  projectsContent.replaceChildren();
+
+  const loadingMessage = document.createElement("p");
+  loadingMessage.textContent = "Loading projects...";
+
+  projectsContent.append(loadingMessage);
+
+  setTimeout(() => {
+    renderError();
+  }, 500);
+}
+
+function initializeProjects() {
+  renderError();
+
+  const retryButton = projectsContent.querySelector("button");
+
+  retryButton.addEventListener("click", retryProjects);
+}
+
+initializeProjects();
+
 function renderError() {
   projectsContent.replaceChildren();
 
