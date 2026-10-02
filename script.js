@@ -50,4 +50,16 @@ function renderProjects() {
     });
 }
 
-renderProjects();
+renderError();
+function renderError() {
+  projectsContent.replaceChildren();
+
+  const errorMessage = document.createElement("p");
+  const retryButton = document.createElement("button");
+
+  errorMessage.textContent = "Unable to load projects.";
+  retryButton.type = "button";
+  retryButton.textContent = "Retry";
+
+  projectsContent.append(errorMessage, retryButton);
+}
