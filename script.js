@@ -23,19 +23,19 @@ themeToggle.addEventListener("click", () => {
 
 const projectsContent = document.querySelector("#projects-content");
 
-const projects = [
-    {
-        name: "FreshLoop",
-        description: "A predictive inventory grocery application."
-    },
-    {
-        name: "Portfolio Website",
-        description: "A responsive personal developer portfolio."
-    }
-];
+const projects = [];
 
 function renderProjects() {
     projectsContent.replaceChildren();
+
+    if (projects.length === 0) {
+        const emptyMessage = document.createElement("p");
+
+        emptyMessage.textContent = "No projects available.";
+
+        projectsContent.append(emptyMessage);
+        return;
+     } 
 
     projects.forEach((project) => {
         const article = document.createElement("article");
