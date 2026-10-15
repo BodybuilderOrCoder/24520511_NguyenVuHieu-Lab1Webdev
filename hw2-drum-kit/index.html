@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drum Kit Engine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Drum Kit Engine</h1>
+        <p>Play drums using your keyboard or mouse.</p>
+    </header>
+
+    <main id="main">
+        <section aria-labelledby="drum-title">
+            <h2 id="drum-title">Drum Pads</h2>
+
+            <div class="drum-grid">
+                <button type="button" class="drum-pad"
+                    data-key="a" data-sound="sounds/kick.wav"
+                    aria-label="Play Kick Drum">
+                    A - Kick
+                </button>
+
+                <button type="button" class="drum-pad"
+                    data-key="s" data-sound="sounds/snare.wav"
+                    aria-label="Play Snare Drum">
+                    S - Snare
+                </button>
+
+                <button type="button" class="drum-pad"
+                    data-key="d" data-sound="sounds/hihat.wav"
+                    aria-label="Play Hi-Hat">
+                    D - Hi-Hat
+                </button>
+
+                <button type="button" class="drum-pad"
+                    data-key="f" data-sound="sounds/clap.wav"
+                    aria-label="Play Clap">
+                    F - Clap
+                </button>
+
+                <button type="button" class="drum-pad"
+                    data-key="j" data-sound="sounds/tom1.wav"
+                    aria-label="Play Tom 1">
+                    J - Tom 1
+                </button>
+
+                <button type="button" class="drum-pad"
+                    data-key="k" data-sound="sounds/tom2.wav"
+                    aria-label="Play Tom 2">
+                    K - Tom 2
+                </button>
+
+                <button type="button" class="drum-pad"
+                    data-key="l" data-sound="sounds/crash.wav"
+                    aria-label="Play Crash Cymbal">
+                    L - Crash
+                </button>
+            </div>
+        </section>
+
+        <section aria-labelledby="recorder-title">
+            <h2 id="recorder-title">Beat Recorder</h2>
+
+            <button type="button" id="record-btn">
+                Start Recording
+            </button>
+
+            <button type="button" id="stop-btn" disabled>
+                Stop Recording
+            </button>
+
+            <button type="button" id="play-btn" disabled>
+                Play Recording
+            </button>
+
+            <p id="record-status" role="status">
+                Ready to record.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Built with HTML5, CSS3, and Vanilla JavaScript.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
