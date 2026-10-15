@@ -21,67 +21,110 @@ themeToggle.addEventListener("click", () => {
     }
 });
 
+
 const projectsContent = document.querySelector("#projects-content");
 
-const projects = [];
+const sampleProjects = [
+    {
+        name: "FreshLoop",
+        description: "A predictive inventory grocery application.",
+        category: "Full Stack"
+    },
+    {
+        name: "Portfolio Website",
+        description: "A responsive personal developer portfolio.",
+        category: "Frontend"
+    }
+];
 
-function renderProjects() {
+// Change this value to test each request outcome.
+const demoMode = "success"; // "success", "empty", "error"
+
+function renderLoading() {
     projectsContent.replaceChildren();
 
+    const skeleton = document.createElement("div");
+    skeleton.className = "skeleton-item";
+    skeleton.setAttribute("aria-hidden", "true");
+
+    projectsContent.setAttribute("aria-busy", "true");
+    projectsContent.append(skeleton);
+}
+
+function renderProjects(projects) {
+    projectsContent.replaceChildren();
+    projectsContent.setAttribute("aria-busy", "false");
+
     if (projects.length === 0) {
-        const emptyMessage = document.createElement("p");
-
-        emptyMessage.textContent = "No projects available.";
-
-        projectsContent.append(emptyMessage);
+        const message = document.createElement("p");
+        message.textContent = "No projects available.";
+        projectsContent.append(message);
         return;
-     } 
+    }
+
+    const grid = document.createElement("div");
+    grid.className = "project-grid";
 
     projects.forEach((project) => {
         const article = document.createElement("article");
-        const title = document.createElement("h3");
-        const description = document.createElement("p");
+        article.className = "project-card";
 
+        const title = document.createElement("h3");
         title.textContent = project.name;
+
+        const badge = document.createElement("span");
+        badge.className = "project-badge";
+        badge.textContent = project.category;
+
+        const description = document.createElement("p");
         description.textContent = project.description;
 
-        article.append(title, description);
-        projectsContent.append(article);
+        article.append(title, badge, description);
+        grid.append(article);
+    });
+
+    projectsContent.append(grid);
+}
+
+function renderError() {
+    projectsContent.replaceChildren();
+    projectsContent.setAttribute("aria-busy", "false");
+
+    const message = document.createElement("p");
+    message.textContent = "Unable to load projects.";
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Retry";
+    button.addEventListener("click", loadProjects);
+
+    projectsContent.append(message, button);
+}
+
+function fetchProjects() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (demoMode === "error") {
+                reject(new Error("Simulated request failure"));
+            } else if (demoMode === "empty") {
+                resolve([]);
+            } else {
+                resolve(sampleProjects);
+            }
+        }, 800);
     });
 }
 
-function retryProjects() {
-  projectsContent.replaceChildren();
+async function loadProjects() {
+    renderLoading();
 
-  const loadingMessage = document.createElement("p");
-  loadingMessage.textContent = "Loading projects...";
-
-  projectsContent.append(loadingMessage);
-
-  setTimeout(() => {
-    renderError();
-  }, 500);
+    try {
+        const projects = await fetchProjects();
+        renderProjects(projects);
+    } catch (error) {
+        console.error("Project request failed:", error);
+        renderError();
+    }
 }
 
-function initializeProjects() {
-  renderError();
-
-  const retryButton = projectsContent.querySelector("button");
-
-  retryButton.addEventListener("click", retryProjects);
-}
-
-initializeProjects();
-
-function renderError() {
-  projectsContent.replaceChildren();
-
-  const errorMessage = document.createElement("p");
-  const retryButton = document.createElement("button");
-
-  errorMessage.textContent = "Unable to load projects.";
-  retryButton.type = "button";
-  retryButton.textContent = "Retry";
-
-  projectsContent.append(errorMessage, retryButton);
-}
+loadProjects();
