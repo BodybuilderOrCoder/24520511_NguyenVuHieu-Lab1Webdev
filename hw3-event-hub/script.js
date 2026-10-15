@@ -69,3 +69,103 @@ if (Number.isNaN(deadline)) {
         }, 250);
     }
 }
+
+
+/* ==========================================
+   HW3 - REGISTRATION FORM STATE MACHINE
+========================================== */
+
+// 1. DOM elements
+
+const registrationForm = document.querySelector("#registration-form");
+const submitButton = document.querySelector("#submit-button");
+const formStatus = document.querySelector("#form-status");
+
+// 2. Define states
+
+const FORM_STATES = Object.freeze({
+    IDLE: "idle",
+    SUBMITTING: "submitting",
+    SUCCESS: "success",
+    ERROR: "error"
+});
+
+let currentFormState = FORM_STATES.IDLE;
+
+// 3. Render state
+
+function setFormState(state, message = "") {
+    currentFormState = state;
+
+    formStatus.dataset.state = state;
+    formStatus.textContent = message;
+
+    submitButton.disabled = state === FORM_STATES.SUBMITTING;
+
+    if (state === FORM_STATES.SUBMITTING) {
+        submitButton.textContent = "Submitting...";
+    } else {
+        submitButton.textContent = "Register Now";
+    }
+}
+
+// 4. Simulate asynchronous registration
+
+function simulateRegistration(data) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (data.email.toLowerCase().endsWith("@error.test")) {
+                reject(new Error("Simulated registration failure."));
+                return;
+            }
+
+            resolve({ success: true });
+        }, 1000);
+    });
+}
+
+// 5. Handle form submission
+
+registrationForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    // Prevent duplicate submissions.
+    if (currentFormState === FORM_STATES.SUBMITTING) {
+        return;
+    }
+
+    const formData = new FormData(registrationForm);
+
+    const fullName = String(formData.get("fullName") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+
+    if (!fullName || !email || !registrationForm.checkValidity()) {
+        setFormState(
+            FORM_STATES.ERROR,
+            "Please provide a valid name and email address."
+        );
+        return;
+    }
+
+    setFormState(FORM_STATES.SUBMITTING, "Processing registration...");
+
+    try {
+        await simulateRegistration({ fullName, email });
+
+        setFormState(
+            FORM_STATES.SUCCESS,
+            `Registration successful! Thank you, ${fullName}.`
+        );
+
+        registrationForm.reset();
+    } catch (error) {
+        setFormState(
+            FORM_STATES.ERROR,
+            "Registration failed. Please try again."
+        );
+    }
+});
+
+// 6. Initial state
+
+setFormState(FORM_STATES.IDLE);
