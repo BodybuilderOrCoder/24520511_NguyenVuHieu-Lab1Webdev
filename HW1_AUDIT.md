@@ -39,3 +39,60 @@ The website passed the initial accessibility audit. Further keyboard and securit
 ### Conclusion
 The website passed the manual keyboard navigation audit.
 
+## M3 – Content Security Policy Audit
+
+### Objective
+Implement a restrictive Content Security Policy (CSP) to reduce the risk of unauthorized script execution.
+
+### Implementation
+- Added a CSP meta tag to `index.html`.
+- Restricted JavaScript and CSS resources to the same origin.
+- Avoided inline JavaScript event handlers.
+- Used `textContent` for rendering project data.
+
+### Verification
+- Tested the website using Python HTTP Server on port 8000.
+- Confirmed that the website loads without CSP violations in Chrome DevTools.
+- Confirmed that the project cards render correctly.
+- Identified an inline-script CSP violation when using VS Code Live Server.
+
+### Conclusion
+The CSP implementation passed the local HTTP server verification. A production deployment should enforce CSP through HTTP response headers.
+
+---
+
+## M4 – Lighthouse Performance Audit
+
+### Objective
+Evaluate and improve website performance, especially visual stability during asynchronous content loading.
+
+### Initial Results
+- Performance: 1000
+- Accessibility: 100/100
+- Best Practices: 100/100
+- SEO: 90/100
+- First Contentful Paint: 0.9 seconds
+- Largest Contentful Paint: 0.9 seconds
+- Total Blocking Time: 0 milliseconds
+- Cumulative Layout Shift: 0.100
+- Speed Index: 0.9 seconds
+
+### Issue Identified
+Lighthouse identified `#projects-content` as the source of a layout shift during asynchronous project rendering.
+
+### Optimization
+Added the following CSS rule to reserve space for project content:
+
+```css
+#projects-content {
+    min-height: 380px;
+}
+```
+
+### Final Result
+- Lighthouse Performance: 100/100.
+- No JavaScript errors were observed during the local HTTP server test.
+- The optimization improved the measured performance score from 98 to 100.
+
+### Conclusion
+The website achieved the Lighthouse Performance target in the final test. Further verification across multiple devices and viewport sizes is recommended.
