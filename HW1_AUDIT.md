@@ -24,3 +24,17 @@ A Lighthouse score of 100 does not guarantee full WCAG 2.2 AA compliance. Additi
 
 ### Conclusion
 The website passed the initial accessibility audit. Further keyboard and security testing will be conducted in subsequent milestones.
+
+## M2 – Keyboard Navigation & Focus Trap Audit
+
+### Test Results
+- Tab navigation follows a logical order.
+- Shift+Tab supports reverse navigation.
+- All interactive elements can be activated using the keyboard.
+- Focus indicators are visible.
+- Skip-to-content navigation works.
+- No unintended keyboard focus traps were detected.
+- No modal or dialog is present, so modal focus trapping is not applicable.
+
+### Conclusion
+The website passed the manual keyboard navigation audit.
