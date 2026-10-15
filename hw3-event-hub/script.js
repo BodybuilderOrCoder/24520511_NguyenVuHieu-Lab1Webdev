@@ -90,6 +90,7 @@ if (Number.isNaN(deadline)) {
 const registrationForm = document.querySelector("#registration-form");
 const submitButton = document.querySelector("#submit-button");
 const formStatus = document.querySelector("#form-status");
+const formInputs = registrationForm.querySelectorAll("input");
 
 // 2. Define states
 
@@ -104,15 +105,24 @@ let currentFormState = FORM_STATES.IDLE;
 
 // 3. Render state
 
+
 function setFormState(state, message = "") {
     currentFormState = state;
 
     formStatus.dataset.state = state;
     formStatus.textContent = message;
 
-    submitButton.disabled = state === FORM_STATES.SUBMITTING;
+    const isSubmitting = state === FORM_STATES.SUBMITTING;
 
-    if (state === FORM_STATES.SUBMITTING) {
+    // Prevent repeated submissions.
+    submitButton.disabled = isSubmitting;
+
+    // Keep submitted data unchanged while processing.
+    formInputs.forEach((input) => {
+        input.readOnly = isSubmitting;
+    });
+
+    if (isSubmitting) {
         submitButton.textContent = "Submitting...";
     } else {
         submitButton.textContent = "Register Now";
