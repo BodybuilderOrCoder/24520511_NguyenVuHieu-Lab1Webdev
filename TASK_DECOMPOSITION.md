@@ -88,3 +88,53 @@ The page must contain:
 - The UI must not remain stuck in the loading state.
 - No unescaped innerHTML is used.
 - No console errors.
+
+## Homework 2 – Drum Kit Engine
+
+### Project Objective
+
+Build an interactive drum kit using Vanilla JavaScript, semantic HTML5, and modern CSS. The application must support mouse interaction, keyboard controls, polyphonic audio playback, and timestamped beat recording.
+
+### Technology Constraints
+
+- HTML5, CSS3, Vanilla JavaScript ES6+
+- No external frameworks or libraries
+- No inline JavaScript event handlers
+- No unescaped `innerHTML`
+- Mobile-first responsive design
+
+### HW2-T01 – HTML Sound Contract
+
+- Define interactive drum pads using HTML buttons.
+- Each drum pad must contain `data-key` and `data-sound` attributes.
+- Keep audio file paths separate from JavaScript logic.
+- Use accessible labels for drum pads.
+
+**Acceptance Criteria:** Each drum pad has a valid key binding and sound path.
+
+### HW2-T02 – Polyphonic Audio Engine
+
+- Implement an independent `playSound()` function.
+- Support overlapping audio playback.
+- Handle audio playback failures gracefully.
+- Keep audio playback logic separate from event listeners.
+
+**Acceptance Criteria:** Multiple drum sounds can play without stopping each other.
+
+### HW2-T03 – Keyboard Event Handling
+
+- Use the standard `keydown` event.
+- Use `event.key` instead of deprecated `keyCode`.
+- Ignore repeated keydown events using `event.repeat`.
+- Support both mouse clicks and keyboard input.
+
+**Acceptance Criteria:** Drum pads respond correctly to keyboard and mouse interaction.
+
+### HW2-T04 – FIFO Beat Recorder
+
+- Record drum events with timestamps.
+- Preserve event order using a FIFO queue.
+- Allow users to start, stop, and replay recordings.
+- Prevent overlapping playback sessions.
+
+**Acceptance Criteria:** Recorded beats replay in their original order with approximately the same timing.
