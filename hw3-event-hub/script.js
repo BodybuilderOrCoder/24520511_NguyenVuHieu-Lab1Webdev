@@ -56,6 +56,7 @@ function updateCountdown() {
 
 // 5. Start countdown safely
 
+
 if (Number.isNaN(deadline)) {
     countdownStatus.textContent = "Invalid event deadline.";
 } else {
@@ -67,8 +68,17 @@ if (Number.isNaN(deadline)) {
                 clearInterval(timerId);
             }
         }, 250);
+
+        document.addEventListener("visibilitychange", () => {
+            if (!document.hidden) {
+                if (updateCountdown()) {
+                    clearInterval(timerId);
+                }
+            }
+        });
     }
 }
+
 
 
 /* ==========================================
