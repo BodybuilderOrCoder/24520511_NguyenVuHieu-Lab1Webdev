@@ -169,3 +169,16 @@ registrationForm.addEventListener("submit", async (event) => {
 // 6. Initial state
 
 setFormState(FORM_STATES.IDLE);
+
+
+/* Reset stale feedback when the user edits the form */
+
+registrationForm.addEventListener("input", () => {
+    if (
+        currentFormState === FORM_STATES.SUCCESS ||
+        currentFormState === FORM_STATES.ERROR
+    ) {
+        setFormState(FORM_STATES.IDLE);
+    }
+});
+
