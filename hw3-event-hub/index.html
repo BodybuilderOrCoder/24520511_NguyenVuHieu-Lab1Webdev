@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register for our upcoming technology event.">
+
+    <title>TechConnect 2026 | Event Registration</title>
+</head>
+
+<body>
+    <a href="#main">Skip to Content</a>
+
+    <header>
+        <h1>TechConnect 2026</h1>
+
+        <nav aria-label="Main Navigation">
+            <a href="#about">About</a>
+            <a href="#countdown">Countdown</a>
+            <a href="#registration">Register</a>
+        </nav>
+    </header>
+
+    <main id="main">
+
+        <!-- Event Introduction -->
+        <section id="about" aria-labelledby="about-title">
+            <h2 id="about-title">The Future of Technology</h2>
+
+            <p>
+                Join developers, students, and technology enthusiasts
+                for an exciting event about modern web development.
+            </p>
+        </section>
+
+        <!-- Countdown Contract -->
+        <section id="countdown" aria-labelledby="countdown-title">
+            <h2 id="countdown-title">Event Countdown</h2>
+
+            <p>
+                Time remaining until the event begins:
+            </p>
+
+            <div
+                id="countdown-display"
+                role="timer"
+                aria-label="Time remaining until the event"
+                data-deadline="2026-12-31T12:00:00Z"
+            >
+                <span id="days">00</span> Days
+                <span id="hours">00</span> Hours
+                <span id="minutes">00</span> Minutes
+                <span id="seconds">00</span> Seconds
+            </div>
+
+            <p id="countdown-status">
+                Countdown will start shortly.
+            </p>
+        </section>
+
+        <!-- Registration Contract -->
+        <section id="registration" aria-labelledby="registration-title">
+            <h2 id="registration-title">Event Registration</h2>
+
+            <form id="registration-form">
+                <label for="full-name">Full Name</label>
+                <input
+                    type="text"
+                    id="full-name"
+                    name="fullName"
+                    autocomplete="name"
+                    required
+                >
+
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autocomplete="email"
+                    required
+                >
+
+                <button type="submit" id="submit-button">
+                    Register Now
+                </button>
+            </form>
+
+            <p id="form-status" role="status" aria-live="polite"></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>TechConnect 2026 - Built with HTML5, CSS3, and Vanilla JavaScript.</p>
+    </footer>
+</body>
+</html>
