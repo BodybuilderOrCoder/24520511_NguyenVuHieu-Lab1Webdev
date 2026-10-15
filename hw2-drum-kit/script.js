@@ -19,3 +19,36 @@ drumPads.forEach((pad) => {
         playSound(soundPath);
     });
 });
+
+
+/* HW2-T03: Keyboard Controls */
+
+const drumPadMap = new Map();
+
+drumPads.forEach((pad) => {
+    drumPadMap.set(pad.dataset.key, pad);
+});
+
+document.addEventListener("keydown", (event) => {
+    // Ignore repeated events when holding a key
+    if (event.repeat) {
+        return;
+    }
+
+    // Ignore shortcuts while typing in form fields
+    if (
+        event.target instanceof HTMLElement &&
+        event.target.closest("input, textarea, select, [contenteditable]")
+    ) {
+        return;
+    }
+
+    const key = event.key.toLowerCase();
+    const pad = drumPadMap.get(key);
+
+    if (!pad) {
+        return;
+    }
+
+    playSound(pad.dataset.sound);
+});
