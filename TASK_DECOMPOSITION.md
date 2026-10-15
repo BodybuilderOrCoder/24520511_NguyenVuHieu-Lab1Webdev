@@ -138,3 +138,79 @@ Build an interactive drum kit using Vanilla JavaScript, semantic HTML5, and mode
 - Prevent overlapping playback sessions.
 
 **Acceptance Criteria:** Recorded beats replay in their original order with approximately the same timing.
+
+## Homework 3 – Resilient Event Hub
+
+### Objective
+
+Build a responsive event landing page featuring a drift-free countdown timer, a registration form state machine, and secure input handling.
+
+### Technology Constraints
+
+- Semantic HTML5
+- Modern CSS3
+- Vanilla JavaScript ES6+
+- No external frameworks or CDNs
+- Mobile-first responsive layout (375px)
+- No unsafe innerHTML or inline event handlers
+
+### HW3-T01 – Countdown Engine
+
+**Contract:**
+- Store the event deadline as a UTC ISO 8601 timestamp.
+- Calculate remaining time from the difference between the deadline and the current time.
+- Display days, hours, minutes, and seconds.
+- Stop updating when the countdown reaches zero.
+
+**Acceptance Criteria:**
+- The timer does not accumulate interval drift.
+- The deadline is interpreted consistently across time zones.
+- No negative countdown values are displayed.
+
+### HW3-T02 – Registration Form State Machine
+
+**States:**
+- Idle
+- Submitting
+- Success
+- Error
+
+**Acceptance Criteria:**
+- The UI reflects the current state.
+- Submission transitions are explicitly controlled.
+- Success and error feedback are accessible.
+
+### HW3-T03 – Security and Double-Submit Prevention
+
+**Acceptance Criteria:**
+- Repeated submissions are blocked while submitting.
+- User input is validated.
+- User-provided text is rendered safely.
+- No unescaped innerHTML is used.
+
+### HW3-T04 – Verification
+
+- Test countdown expiration and time zone handling.
+- Test all form states.
+- Test rapid double-click submissions.
+- Test potentially malicious input.
+- Test keyboard navigation and 375px responsiveness.
+
+### HW3-T05 – AI Failure Audit
+
+Create `AI_FAILURE_AUDIT.md` documenting three genuine AI-induced defects discovered during implementation.
+
+For each defect, include:
+1. Defect description.
+2. Diagnostic method and evidence.
+3. Refactored solution.
+4. Verification result.
+
+Do not invent defects or test results.
+
+### Git Requirements
+
+- Minimum five atomic commits.
+- Separate implementation slices.
+- Inspect Git diffs before committing.
+- Avoid monolithic AI-generated changes.
