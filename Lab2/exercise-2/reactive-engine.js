@@ -1,5 +1,6 @@
 // Exercise 2 - Phase 1: State Store Engine
-import { renderToDOM } from "../exercise-1/mini-react.js";
+import { renderDelegatedDOM } from "./delegated-renderer.js";
+import { attachRootEventDelegation } from "./event-delegation.js";
 
 const stateStore = [];
 let cursor = 0;
@@ -75,6 +76,7 @@ export function renderApp(component, root) {
     rootComponent = component;
     rootElement = root;
 
+    attachRootEventDelegation(rootElement);
     performRender();
 }
 
@@ -90,7 +92,7 @@ function performRender() {
     const vnode = rootComponent();
 
     // Convert Virtual DOM into actual DOM
-    const dom = renderToDOM(vnode);
+    const dom = renderDelegatedDOM(vnode);
 
     // Replace previous UI with the new UI
     rootElement.replaceChildren(dom);
