@@ -209,3 +209,44 @@ Implement a simplified reactive state management engine using JavaScript closure
 **DevTools Audit:** Pending local verification.
 
 **Git Push:** Pending.
+
+---
+
+# Exercise 3 – Resilient State Machine & Skeleton Loader
+
+**Estimated Duration:** 35 minutes
+
+## Objective
+
+Implement robust asynchronous state handling with four exclusive UI states: IDLE, LOADING, SUCCESS, and ERROR.
+
+## Task Breakdown
+
+- [x] T01 – Create Exercise 3 project structure
+- [x] T02 – Define finite state machine
+- [x] T03 – Implement asynchronous mock data fetching
+- [x] T04 – Implement skeleton loader
+- [x] T05 – Implement SUCCESS data view
+- [x] T06 – Implement ERROR view and Retry Connection
+- [x] T07 – Implement stale request protection
+- [ ] T08 – Verify all four lifecycle states
+- [ ] T09 – Test race condition handling
+- [ ] T10 – Commit and push changes
+
+## Acceptance Criteria
+
+- Exactly four supported lifecycle states.
+- Animated skeleton placeholders during LOADING.
+- Data rendered only after successful requests.
+- Human-readable error message.
+- Working Retry Connection button.
+- Older asynchronous responses cannot overwrite newer results.
+- No unsafe HTML injection.
+
+## Git Milestone
+
+`feat(ui): implement multi-state data component with skeleton feedback`
+
+## Verification Status
+
+Pending local testing.
