@@ -151,4 +151,61 @@ Exercise 1 is complete when:
 - [x] T07 Create test runner
 - [x] T08 Verify XSS resistance
 - [x] T09 DevTools audit
-- [ ] T10 Review Git history
+- [x] T10 Review Git history
+
+---
+
+# Exercise 2 – Reactive State Machine & Delegation Hub
+
+**Estimated Duration:** 40 minutes
+
+## Objective
+
+Implement a simplified reactive state management engine using JavaScript closures and root event delegation.
+
+## Task Breakdown
+
+- [x] T01 – Create Exercise 2 project structure
+- [x] T02 – Implement stateStore
+- [x] T03 – Implement resetCursor()
+- [x] T04 – Implement custom useState()
+- [x] T05 – Implement reactive dispatcher
+- [x] T06 – Implement root event delegation
+- [x] T07 – Implement delegated DOM renderer
+- [x] T08 – Build reactive Task Manager
+- [ ] T09 – Complete Checkpoint 2 verification
+- [ ] T10 – Perform DevTools event listener audit
+- [ ] T11 – Review Git history and push changes
+
+## Required Git Commits
+
+1. `feat(state): implement stateStore and resetCursor engine`
+2. `feat(state): implement reactive useState dispatcher`
+3. `feat(events): attach root event delegation listener`
+4. `feat(ui): assemble reactive todo application`
+
+## Security Checklist
+
+- [x] Avoid unsafe HTML string injection
+- [x] Render text using createTextNode()
+- [x] Avoid direct click listeners on child buttons
+- [x] Restrict supported HTML tags and attributes
+- [ ] Verify root event listener registration in DevTools
+
+## Acceptance Criteria
+
+- State values persist across re-renders.
+- Updating state triggers a new render.
+- Task Manager supports adding and updating tasks.
+- Task filters update dynamically.
+- Click events are handled through root delegation.
+- No unnecessary wrapper elements are generated.
+- Git history contains the required atomic commits.
+
+## Final Verification
+
+**Checkpoint Result:** Pending local verification.
+
+**DevTools Audit:** Pending local verification.
+
+**Git Push:** Pending.
