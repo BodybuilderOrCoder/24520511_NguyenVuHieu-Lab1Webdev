@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini React Factory Test</title>
+</head>
+<body>
+<main>
+    <h1>Mini React Factory Test</h1>
+    <p>Open DevTools → Console to view results.</p>
+</main>
+
+<script type="module">
+    import { createElement, createTextElement } from "./mini-react.js";
+
+    const app = createElement(
+        "main",
+        { id: "root-view" },
+        createElement("h1", null, "Mini React Engine"),
+        createElement("button", null, "Click")
+    );
+
+    console.log("VNode Tree:", app);
+
+    console.assert(app.type === "main", "Invalid root type");
+    console.assert(app.props.children.length === 2, "Invalid children");
+    console.assert(
+        app.props.children[0].props.children[0].type === "TEXT_ELEMENT",
+        "Text node creation failed"
+    );
+
+    console.log("Factory tests completed");
+</script>
+</body>
+</html>
