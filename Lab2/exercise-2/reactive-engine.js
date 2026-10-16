@@ -1,4 +1,5 @@
 // Exercise 2 - Phase 1: State Store Engine
+import { renderToDOM } from "../exercise-1/mini-react.js";
 
 const stateStore = [];
 let cursor = 0;
@@ -30,4 +31,80 @@ export function updateStateSlot(slot, nextValue) {
 
 export function getStateSnapshot() {
     return [...stateStore];
+}
+
+// Exercise 2 - Phase 2: Reactive useState Dispatcher
+
+let rootElement = null;
+let rootComponent = null;
+let renderScheduled = false;
+
+export function useState(initialValue) {
+    const { slot, value } = getStateSlot(initialValue);
+
+    function setState(nextValue) {
+        const previousValue = stateStore[slot];
+
+        // Support both direct values and functional updates
+        const resolvedValue =
+            typeof nextValue === "function"
+                ? nextValue(previousValue)
+                : nextValue;
+
+        // Skip rendering if state has not changed
+        if (Object.is(previousValue, resolvedValue)) {
+            return;
+        }
+
+        updateStateSlot(slot, resolvedValue);
+        scheduleRender();
+    }
+
+    return [value, setState];
+}
+
+export function renderApp(component, root) {
+    if (typeof component !== "function") {
+        throw new TypeError("Component must be a function");
+    }
+
+    if (!(root instanceof Element)) {
+        throw new TypeError("Root must be a DOM element");
+    }
+
+    rootComponent = component;
+    rootElement = root;
+
+    performRender();
+}
+
+function performRender() {
+    if (!rootComponent || !rootElement) {
+        return;
+    }
+
+    // Reset hook position, but preserve state values
+    resetCursor();
+
+    // Generate the new Virtual DOM tree
+    const vnode = rootComponent();
+
+    // Convert Virtual DOM into actual DOM
+    const dom = renderToDOM(vnode);
+
+    // Replace previous UI with the new UI
+    rootElement.replaceChildren(dom);
+}
+
+function scheduleRender() {
+    if (!rootComponent || !rootElement || renderScheduled) {
+        return;
+    }
+
+    renderScheduled = true;
+
+    queueMicrotask(() => {
+        renderScheduled = false;
+        performRender();
+    });
 }
