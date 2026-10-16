@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini React Mounting Engine</title>
+</head>
+<body>
+<div id="app"></div>
+
+<script type="module">
+    import { createElement, renderToDOM } from "./mini-react.js";
+
+    const vApp = createElement(
+        "main",
+        { id: "root-view", role: "main" },
+
+        createElement(
+            "header",
+            { className: "hero" },
+
+            createElement(
+                "h1",
+                null,
+                "Mini React Engine"
+            ),
+
+            createElement(
+                "p",
+                null,
+                "<img src=x onerror=alert(1)> Safe Text"
+            )
+        ),
+
+        createElement(
+            "section",
+            { "aria-label": "Interaction demo" },
+
+            createElement(
+                "button",
+                {
+                    onClick: () => {
+                        console.log("Ping");
+                        alert("Mini React button works!");
+                    }
+                },
+                "Click"
+            )
+        )
+    );
+
+    const root = document.getElementById("app");
+
+    root.replaceChildren(renderToDOM(vApp));
+
+    console.assert(
+        root.querySelector("button") !== null,
+        "Mount Failed"
+    );
+
+    console.assert(
+        root.querySelector("main") !== null,
+        "Semantic HTML Failed"
+    );
+
+    console.assert(
+        root.querySelector("img") === null,
+        "XSS Test Failed"
+    );
+
+    console.log("Mini React mounted successfully");
+</script>
+</body>
+</html>
