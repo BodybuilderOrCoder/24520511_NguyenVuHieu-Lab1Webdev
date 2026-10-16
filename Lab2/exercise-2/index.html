@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reactive Task Manager</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 32px 16px;
+            background: #f1f5f9;
+            color: #0f172a;
+            font-family: Arial, sans-serif;
+        }
+
+        #app {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .app-container {
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px #0f172a12;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        h2 {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        section {
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 4px;
+            padding: 10px 14px;
+            border: 0;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        button[aria-pressed="true"] {
+            background: #0f172a;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        li span {
+            display: inline-block;
+            min-width: 150px;
+            margin-right: 10px;
+        }
+
+        li.completed span {
+            color: #64748b;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+
+<script type="module" src="./app.js"></script>
+</body>
+</html>
